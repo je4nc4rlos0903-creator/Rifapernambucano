@@ -1,26 +1,65 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin</title>
+const adminList = document.getElementById('admin-list')
 
-  <link rel="stylesheet" href="style.css">
+async function loadAdmin() {
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
-<body>
+  const { data } = await supabaseClient
+    .from('rifa_numbers')
+    .select('*')
+    .neq('status', 'available')
+    .order('number')
 
-  <div class="container">
+  adminList.innerHTML = ''
 
-    <h1>Painel Admin</h1>
+  data.forEach(item => {
 
-    <div id="admin-list"></div>
+    const div = document.createElement('div')
 
-  </div>
+    div.style.background = '#1e293b'
+    div.style.padding = '20px'
+    div.style.marginBottom = '15px'
+    div.style.borderRadius = '15px'
 
-  <script src="supabase.js"></script>
-  <script src="admin.js"></script>
+    div.innerHTML = `
+      <h2>Número ${item.number}</h2>
+      <p>Nome: ${item.buyer_name}</p>
+      <p>Telefone: ${item.buyer_phone}</p>
+      <p>Status: ${item.status}</p>
 
-</body>
-</html>
+      <button onclick="approve(${item.id})">
+        Aprovar
+      </button>
+
+      <button onclick="resetNumber(${item.id})">
+        Liberar
+      </button>
+    `
+
+    adminList.appendChild(div)
+  })
+}
+
+async function approve(id) {
+
+  await supabaseClient
+    .from('rifa_numbers')
+    .update({ status: 'paid' })
+    .eq('id', id)
+
+  loadAdmin()
+}
+
+async function resetNumber(id) {
+
+  await supabaseClient
+    .from('rifa_numbers')
+    .update({
+      status: 'available',
+      buyer_name: null,
+      buyer_phone: null
+    })
+    .eq('id', id)
+
+  loadAdmin()
+}
+
+loadAdmin()
