@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rifa Solidária</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>RIFA SOLIDÁRIA</h1>
+
+    <p class="subtitle">
+      Escolha seu número
+    </p>
+
+    <div class="legend">
+      <div><span class="available"></span> Disponível</div>
+      <div><span class="reserved"></span> Reservado</div>
+      <div><span class="paid"></span> Pago</div>
+    </div>
+
+    <div id="numbers" class="numbers"></div>
+
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+
+      <h2 id="modal-number"></h2>
+
+      <input type="text" id="name" placeholder="Seu nome" />
+
+      <input type="text" id="phone" placeholder="Telefone" />
+
+      <div class="pix-box">
+        <p>PIX:</p>
+        <strong>SEU PIX AQUI</strong>
+      </div>
+
+      <div class="buttons">
+        <button onclick="closeModal()" class="cancel">
+          Cancelar
+        </button>
+
+        <button onclick="reserveNumber()" class="confirm">
+          Reservar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="supabase.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
