@@ -1,63 +1,517 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rifa Solidária</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biohacking Inteligente</title>
 
-  <link rel="stylesheet" href="style.css" />
+<style>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#0f172a;
+    color:#f8fafc;
+    line-height:1.9;
+}
+
+header{
+    background:linear-gradient(135deg,#020617,#0f172a,#0ea5e9);
+    padding:100px 20px;
+    text-align:center;
+    border-bottom:3px solid #38bdf8;
+}
+
+header h1{
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+header p{
+    font-size:1.3rem;
+    max-width:900px;
+    margin:auto;
+    color:#dbeafe;
+}
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:auto;
+    padding:50px 0;
+}
+
+.card{
+    background:#1e293b;
+    margin-bottom:35px;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.35);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+h2{
+    color:#38bdf8;
+    margin-bottom:25px;
+    font-size:2.2rem;
+}
+
+h3{
+    color:#7dd3fc;
+    margin-top:30px;
+    margin-bottom:15px;
+}
+
+p{
+    margin-bottom:20px;
+    color:#e2e8f0;
+}
+
+ul{
+    margin-left:25px;
+    margin-bottom:20px;
+}
+
+li{
+    margin-bottom:12px;
+}
+
+.highlight{
+    background:#0f172a;
+    border-left:5px solid #38bdf8;
+    padding:25px;
+    margin:25px 0;
+    border-radius:12px;
+}
+
+.tip{
+    background:#082f49;
+    padding:20px;
+    border-radius:12px;
+    margin-top:20px;
+}
+
+footer{
+    background:#020617;
+    text-align:center;
+    padding:40px;
+    color:#94a3b8;
+    border-top:2px solid #38bdf8;
+}
+
+nav{
+    position:sticky;
+    top:0;
+    background:#020617;
+    padding:15px;
+    z-index:999;
+    border-bottom:1px solid #1e40af;
+}
+
+nav ul{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    list-style:none;
+}
+
+nav a{
+    color:#38bdf8;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:white;
+}
+
+@media(max-width:768px){
+
+header h1{
+    font-size:2.6rem;
+}
+
+header p{
+    font-size:1rem;
+}
+
+.card{
+    padding:25px;
+}
+
+h2{
+    font-size:1.7rem;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-  <div class="container">
+<nav>
+<ul>
+<li><a href="#intro">Introdução</a></li>
+<li><a href="#sono">Sono</a></li>
+<li><a href="#alimentacao">Alimentação</a></li>
+<li><a href="#exercicio">Exercícios</a></li>
+<li><a href="#mental">Mente</a></li>
+<li><a href="#habitos">Hábitos</a></li>
+<li><a href="#plano">Plano</a></li>
+</ul>
+</nav>
 
-    <h1>RIFA SOLIDÁRIA</h1>
+<header>
 
-    <p class="subtitle">
-      Escolha seu número
-    </p>
+<h1>Biohacking Inteligente</h1>
 
-    <div class="legend">
-      <div><span class="available"></span> Disponível</div>
-      <div><span class="reserved"></span> Reservado</div>
-      <div><span class="paid"></span> Pago</div>
-    </div>
+<p>
+Como aumentar sua energia, melhorar sua saúde e desacelerar o envelhecimento
+com hábitos acessíveis e cientificamente práticos.
+</p>
 
-    <div id="numbers" class="numbers"></div>
+</header>
 
-  </div>
+<div class="container">
 
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
+<section class="card" id="intro">
 
-      <h2 id="modal-number"></h2>
+<h2>Introdução — O Que é Biohacking?</h2>
 
-      <input type="text" id="name" placeholder="Seu nome" />
+<p>
+Biohacking é a prática de otimizar o corpo e a mente através de mudanças estratégicas nos hábitos diários. Ao contrário do que muitos imaginam, não é necessário gastar milhares de reais em suplementos caros ou equipamentos futuristas.
+</p>
 
-      <input type="text" id="phone" placeholder="Telefone" />
+<p>
+O verdadeiro biohacking está nos hábitos simples repetidos diariamente. Dormir melhor, controlar o estresse, reduzir alimentos inflamatórios e se movimentar já são formas extremamente poderosas de melhorar sua saúde e desacelerar o envelhecimento.
+</p>
 
-      <div class="pix-box">
-        <p>PIX:</p>
-        <strong>SEU PIX AQUI</strong>
-      </div>
+<div class="highlight">
+<p>
+Seu corpo responde ao que você faz todos os dias. Pequenas melhorias constantes geram transformações enormes ao longo dos anos.
+</p>
+</div>
 
-      <div class="buttons">
-        <button onclick="closeModal()" class="cancel">
-          Cancelar
-        </button>
+<h3>Os 5 pilares da longevidade acessível</h3>
 
-        <button onclick="reserveNumber()" class="confirm">
-          Reservar
-        </button>
-      </div>
+<ul>
+<li>Sono profundo e regular</li>
+<li>Alimentação anti-inflamatória</li>
+<li>Exercícios físicos frequentes</li>
+<li>Controle do estresse</li>
+<li>Ambiente saudável</li>
+</ul>
 
-    </div>
-  </div>
+</section>
 
-  <script src="supabase.js"></script>
-  <script src="script.js"></script>
+<section class="card">
+
+<h2>Capítulo 1 — O Corpo Humano Como um Sistema</h2>
+
+<p>
+Seu corpo funciona como uma máquina integrada. Quando você dorme mal, seus hormônios se desregulam. Quando come mal, sua energia diminui. Quando vive estressado, seu cérebro e sistema imunológico sofrem.
+</p>
+
+<p>
+Muitas pessoas tentam resolver problemas isolados sem perceber que tudo está conectado.
+</p>
+
+<h3>Inflamação silenciosa</h3>
+
+<p>
+A inflamação crônica é considerada um dos principais fatores do envelhecimento precoce. Ela reduz energia, piora o sono, aumenta ansiedade e favorece doenças.
+</p>
+
+<ul>
+<li>Excesso de açúcar aumenta inflamação</li>
+<li>Sedentarismo reduz circulação sanguínea</li>
+<li>Estresse eleva cortisol constantemente</li>
+<li>Privação de sono reduz recuperação celular</li>
+</ul>
+
+<div class="tip">
+<strong>Método prático:</strong> tente melhorar apenas 1 hábito por semana. Isso cria consistência e evita desistência.
+</div>
+
+</section>
+
+<section class="card" id="sono">
+
+<h2>Capítulo 2 — Sono: O Biohack Mais Poderoso</h2>
+
+<p>
+Dormir é uma das ferramentas mais poderosas para recuperação física e mental. Durante o sono o corpo produz hormônios essenciais, fortalece a memória e recupera músculos e tecidos.
+</p>
+
+<h3>Método do sono profundo</h3>
+
+<ul>
+<li>Dormir sempre no mesmo horário</li>
+<li>Evitar celular antes de dormir</li>
+<li>Manter o quarto escuro</li>
+<li>Evitar cafeína à noite</li>
+<li>Reduzir luzes fortes após 20h</li>
+</ul>
+
+<h3>Prática de respiração anti-estresse</h3>
+
+<p>
+Uma técnica eficiente para desacelerar a mente:
+</p>
+
+<ul>
+<li>Inspirar por 4 segundos</li>
+<li>Segurar por 4 segundos</li>
+<li>Expirar lentamente por 6 segundos</li>
+</ul>
+
+<p>
+Repita por 5 minutos antes de dormir.
+</p>
+
+<div class="highlight">
+<p>
+Dormir 7 a 9 horas regularmente melhora testosterona, foco, recuperação muscular e disposição.
+</p>
+</div>
+
+</section>
+
+<section class="card" id="alimentacao">
+
+<h2>Capítulo 3 — Alimentação Inteligente</h2>
+
+<p>
+Seu cérebro e corpo utilizam alimentos como combustível. Quanto pior o combustível, pior o desempenho.
+</p>
+
+<p>
+Alimentos ultraprocessados geram energia rápida seguida por fadiga intensa, enquanto alimentos naturais fornecem energia estável.
+</p>
+
+<h3>Alimentos aliados da longevidade</h3>
+
+<ul>
+<li>Ovos</li>
+<li>Arroz e feijão</li>
+<li>Frutas</li>
+<li>Vegetais verdes</li>
+<li>Aveia</li>
+<li>Castanhas</li>
+<li>Carnes magras</li>
+</ul>
+
+<h3>Estratégia prática de alimentação</h3>
+
+<p>
+Monte pratos simples:
+</p>
+
+<ul>
+<li>50% vegetais</li>
+<li>25% proteína</li>
+<li>25% carboidratos</li>
+</ul>
+
+<div class="tip">
+<strong>Dica:</strong> beber mais água já melhora energia, foco e desempenho físico.
+</div>
+
+</section>
+
+<section class="card" id="exercicio">
+
+<h2>Capítulo 4 — Movimento e Exercícios</h2>
+
+<p>
+O corpo humano foi feito para se movimentar. O sedentarismo reduz circulação, piora postura, diminui força e acelera o envelhecimento.
+</p>
+
+<h3>Benefícios da musculação</h3>
+
+<ul>
+<li>Aumento de força</li>
+<li>Melhora hormonal</li>
+<li>Proteção das articulações</li>
+<li>Maior gasto calórico</li>
+<li>Prevenção da perda muscular</li>
+</ul>
+
+<h3>Cardio inteligente</h3>
+
+<p>
+Você não precisa correr por horas. Caminhadas rápidas de 30 minutos já melhoram significativamente saúde cardiovascular.
+</p>
+
+<div class="highlight">
+<p>
+Músculo é um dos maiores protetores contra o envelhecimento.
+</p>
+</div>
+
+</section>
+
+<section class="card" id="mental">
+
+<h2>Capítulo 5 — Biohacks Mentais</h2>
+
+<p>
+O estresse constante envelhece o cérebro e o corpo. Pessoas mentalmente sobrecarregadas têm pior qualidade de sono, menor foco e menos energia.
+</p>
+
+<h3>Redução de dopamina rápida</h3>
+
+<p>
+O excesso de redes sociais e estímulos rápidos reduz concentração e disciplina.
+</p>
+
+<ul>
+<li>Diminua tempo de tela</li>
+<li>Evite excesso de vídeos curtos</li>
+<li>Faça pausas sem celular</li>
+<li>Pratique leitura</li>
+</ul>
+
+<h3>Método do foco profundo</h3>
+
+<ul>
+<li>25 minutos focado</li>
+<li>5 minutos de pausa</li>
+<li>Repetir 4 vezes</li>
+</ul>
+
+<p>
+Esse método aumenta produtividade e reduz procrastinação.
+</p>
+
+</section>
+
+<section class="card" id="habitos">
+
+<h2>Capítulo 6 — Hábitos Modernos Que Estão Destruindo Sua Saúde</h2>
+
+<p>
+A vida moderna oferece conforto, mas também criou hábitos extremamente prejudiciais.
+</p>
+
+<ul>
+<li>Pouco sono</li>
+<li>Excesso de telas</li>
+<li>Alimentos ultraprocessados</li>
+<li>Estresse constante</li>
+<li>Baixo contato com natureza</li>
+</ul>
+
+<h3>Prática do ambiente saudável</h3>
+
+<p>
+Seu ambiente influencia diretamente seus hábitos.
+</p>
+
+<ul>
+<li>Deixe água sempre visível</li>
+<li>Remova alimentos ruins da rotina</li>
+<li>Organize seu quarto</li>
+<li>Crie horários fixos</li>
+</ul>
+
+<div class="tip">
+<strong>Regra importante:</strong> o ambiente sempre vence a motivação.
+</div>
+
+</section>
+
+<section class="card" id="plano">
+
+<h2>Capítulo 7 — Plano Prático de Biohacking</h2>
+
+<h3>Rotina matinal</h3>
+
+<ul>
+<li>Acordar no mesmo horário</li>
+<li>Tomar água imediatamente</li>
+<li>Pegar luz solar pela manhã</li>
+<li>Evitar celular nos primeiros minutos</li>
+<li>Fazer alongamento leve</li>
+</ul>
+
+<h3>Rotina noturna</h3>
+
+<ul>
+<li>Desligar telas cedo</li>
+<li>Reduzir iluminação</li>
+<li>Evitar refeições pesadas tarde da noite</li>
+<li>Praticar respiração profunda</li>
+</ul>
+
+<h3>Plano de evolução</h3>
+
+<p>
+Não tente mudar tudo de uma vez. Escolha:
+</p>
+
+<ul>
+<li>1 hábito físico</li>
+<li>1 hábito mental</li>
+<li>1 hábito alimentar</li>
+</ul>
+
+<p>
+Mantenha por 21 dias antes de adicionar novos hábitos.
+</p>
+
+<div class="highlight">
+<p>
+Disciplina pequena e constante vale mais do que motivação intensa e temporária.
+</p>
+</div>
+
+</section>
+
+<section class="card">
+
+<h2>Conclusão — O Futuro da Sua Saúde Começa Hoje</h2>
+
+<p>
+Longevidade não significa apenas viver mais anos, mas viver com energia, clareza mental e qualidade de vida.
+</p>
+
+<p>
+Seu futuro é construído pelas decisões pequenas feitas diariamente. Dormir melhor, se alimentar bem, se movimentar e controlar o estresse são investimentos que retornam durante toda a vida.
+</p>
+
+<div class="highlight">
+<p>
+A melhor tecnologia para melhorar sua vida continua sendo seus próprios hábitos.
+</p>
+</div>
+
+</section>
+
+</div>
+
+<footer>
+
+<p>
+© 2026 — Biohacking Inteligente | Saúde, energia e longevidade acessível.
+</p>
+
+</footer>
 
 </body>
 </html>
